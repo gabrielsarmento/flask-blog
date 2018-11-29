@@ -16,6 +16,9 @@ class RegistrationForm(FlaskForm):
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
+    text = StringField('Text')
+    search = SubmitField('Search')
+
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user:
@@ -34,6 +37,10 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
+    text = StringField('Text')
+    search = SubmitField('Search')
+
+
 
 class UpdateAccountForm(FlaskForm):
     username = StringField('Username',
@@ -42,6 +49,10 @@ class UpdateAccountForm(FlaskForm):
                         validators=[DataRequired(), Email()])
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
+
+    text = StringField('Text')
+    search = SubmitField('Search')
+
 
     def validate_username(self, username):
         if username.data != current_user.username:
@@ -66,9 +77,16 @@ class RequestResetForm(FlaskForm):
         if user is None:
             raise ValidationError('There is no account with that email. You must register first.')
 
+    text = StringField('Text')
+    search = SubmitField('Search')
+
+
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
+
+    text = StringField('Text')
+    search = SubmitField('Search')
