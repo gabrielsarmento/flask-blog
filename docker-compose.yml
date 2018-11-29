@@ -8,11 +8,11 @@ services:
       POSTGRES_PASSWORD: 'root'
     ports:
       - "5432:5432"
-      
+
   web:
     build: .
     environment:
-      url: postgres://postgres:root@postgres:5432/postgres
+      DATABASE_URL: postgres://postgres:root@postgres:5432/postgres
     command: python run.py
     ports:
       - "8080:8080"
