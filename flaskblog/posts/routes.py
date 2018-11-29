@@ -24,13 +24,13 @@ def new_post():
 
 @posts.route("/post/<int:post_id>")
 def post(post_id):
-    post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
-
-@posts.route("/post/search")
-def search_post():
     form = SearchForm()
-    posts = 0
+    post = Post.query.get_or_404(post_id)
+    return render_template('post.html', title=post.title, post=post, form=form)
+
+@posts.route("/post/search/<text>")
+def search_post(text):
+    print(text)
     return None
 
 
