@@ -34,13 +34,24 @@
             <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
           </div>
           <!-- Search form-->
+          {% if request.path == "/"%}
           <form class="form-inline navbar-brand mx-auto">
               <div class="navbar-brand mx-auto">
                 {{form.text(class="form-control form-control")}}
-                {{form.search(class="btn btn-info")}}
+                {{form.submit(class="btn btn-info")}}
 
               </div>
           </form>
+          {% endif %}
+          {% if request.path == "/home"%}
+          <form class="form-inline navbar-brand mx-auto">
+              <div class="navbar-brand mx-auto">
+                {{form.text(class="form-control form-control")}}
+                {{form.submit(class="btn btn-info")}}
+
+              </div>
+          </form>
+          {% endif %}
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
             {% if current_user.is_authenticated %}
